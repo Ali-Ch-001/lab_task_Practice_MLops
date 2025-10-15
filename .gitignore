@@ -4,6 +4,5 @@ __pycache__/
 *.npy
 *.csv
 .dvc/
-.vscode/
 env/
 .venv/

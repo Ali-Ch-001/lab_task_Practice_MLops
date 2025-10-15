@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prediction Result - Iris Classifier</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+        
+        .container {
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            padding: 50px 40px;
+            max-width: 600px;
+            width: 100%;
+            text-align: center;
+        }
+        
+        .icon {
+            font-size: 80px;
+            margin-bottom: 20px;
+            animation: bounce 1s ease;
+        }
+        
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+        }
+        
+        h1 {
+            color: #667eea;
+            margin-bottom: 15px;
+            font-size: 2em;
+        }
+        
+        .result-box {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 30px;
+            border-radius: 15px;
+            margin: 30px 0;
+            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.3);
+        }
+        
+        .result-label {
+            font-size: 1.1em;
+            opacity: 0.9;
+            margin-bottom: 10px;
+        }
+        
+        .result-value {
+            font-size: 2.5em;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+        
+        .species-info {
+            background: #f0f4ff;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+            text-align: left;
+        }
+        
+        .species-info h3 {
+            color: #667eea;
+            margin-bottom: 10px;
+        }
+        
+        .species-info p {
+            color: #555;
+            line-height: 1.6;
+        }
+        
+        .button-group {
+            display: flex;
+            gap: 15px;
+            margin-top: 30px;
+        }
+        
+        .btn {
+            flex: 1;
+            padding: 15px;
+            border: none;
+            border-radius: 10px;
+            font-size: 1.1em;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+        }
+        
+        .btn-primary {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+        
+        .btn-secondary {
+            background: #f8f9fa;
+            color: #667eea;
+            border: 2px solid #667eea;
+        }
+        
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(102, 126, 234, 0.3);
+        }
+        
+        .btn:active {
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="icon">🌺</div>
+        <h1>Prediction Complete!</h1>
+        
+        <div class="result-box">
+            <div class="result-label">Predicted Iris Species:</div>
+            <div class="result-value">{{ prediction }}</div>
+        </div>
+        
+        <div class="species-info">
+            <h3>About {{ prediction }}</h3>
+            {% if prediction == "Setosa" %}
+            <p>🌼 <strong>Iris Setosa</strong> is characterized by its small flowers and distinctive features. It typically has shorter petals and is easily distinguishable from other iris species.</p>
+            {% elif prediction == "Versicolor" %}
+            <p>🌸 <strong>Iris Versicolor</strong> (Blue Flag Iris) has medium-sized flowers with moderate measurements. It's a versatile species found in wetlands and meadows.</p>
+            {% elif prediction == "Virginica" %}
+            <p>🌺 <strong>Iris Virginica</strong> is the largest of the three species, with longer petals and sepals. It produces beautiful large flowers and is native to the eastern United States.</p>
+            {% else %}
+            <p>The predicted class is: <strong>{{ prediction }}</strong></p>
+            {% endif %}
+        </div>
+        
+        <div class="button-group">
+            <a href="/" class="btn btn-primary">🔄 Predict Another</a>
+            <a href="/api/predict" class="btn btn-secondary" onclick="alert('Use POST request with JSON payload'); return false;">📊 API Info</a>
+        </div>
+    </div>
+</body>
+</html>
