@@ -68,11 +68,9 @@ def predict():
 
     X = np.array(row).reshape(1, -1)
     pred = model.predict(X)[0]
-    # format prediction
-    try:
-        pred_fmt = round(float(pred), 2)
-    except:
-        pred_fmt = str(pred)
+    # format prediction - for Iris dataset, convert class to species name
+    iris_species = {0: "Setosa", 1: "Versicolor", 2: "Virginica"}
+    pred_fmt = iris_species.get(int(pred), str(pred))
     return render_template("result.html", prediction=pred_fmt)
 
 # Optional JSON API

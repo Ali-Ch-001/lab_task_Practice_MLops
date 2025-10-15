@@ -44,20 +44,24 @@ stages:
       md5: 2c2741a338b44cc698b03ddaddd77a6a
       size: 1088
   train:
-    cmd: python src/train.py --data_dir data --model_out model.pkl
+    cmd: python src/train.py --data_dir data --model_out model.pkl --model_dir models
     deps:
     - path: data/X_train.npy
       hash: md5
       md5: abdc135983612a7ff50c3a300b5b4d55
       size: 3968
+    - path: data/iris.csv
+      hash: md5
+      md5: 4d301abed5efe50eccda350cde38e0eb
+      size: 2777
     - path: data/y_train.npy
       hash: md5
       md5: 2c2741a338b44cc698b03ddaddd77a6a
       size: 1088
     - path: src/train.py
       hash: md5
-      md5: d6b0ebfff707063a2034b2ce7dd9f218
-      size: 875
+      md5: bfc7211e2a0dc959c0e741bc4beb13bf
+      size: 2328
     params:
       params.yaml:
         train.max_depth: 5
@@ -68,6 +72,22 @@ stages:
       hash: md5
       md5: d49bd2739686d9e1775e2d51411a0b29
       size: 163169
+    - path: models/feature_field_map.pkl
+      hash: md5
+      md5: 3aadbb83a29564b000ac8f6c3c2f8746
+      size: 164
+    - path: models/house_price_model.pkl
+      hash: md5
+      md5: d49bd2739686d9e1775e2d51411a0b29
+      size: 163169
+    - path: models/label_encoders.pkl
+      hash: md5
+      md5: 9d1bcb3ae163fa48c36932b978ab99c9
+      size: 5
+    - path: models/model_features.pkl
+      hash: md5
+      md5: 5ffec88cbb2bfabbbe635b241b87ce83
+      size: 94
   evaluate:
     cmd: python src/evaluate.py --data_dir data --model model.pkl --out metrics/eval.json
     deps:
